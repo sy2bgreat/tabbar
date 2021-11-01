@@ -59,13 +59,16 @@ class _MyHomePageState extends State<MyHomePage>
         ],
       ),
       bottomNavigationBar: TabBar(
+        labelColor: Colors.blueAccent,
         controller: controller,
         tabs: const [
           Tab(
             icon: Icon(Icons.looks_one, color: Colors.purple),
+            text: "First",
           ),
           Tab(
             icon: Icon(Icons.looks_two, color: Colors.blue),
+            text: "Sec",
           ),
         ],
       ),
