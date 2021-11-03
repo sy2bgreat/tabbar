@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tapbar_app/first_page.dart';
 import 'package:tapbar_app/sec_page.dart';
+import 'animals_item.dart';
+import 'fir_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,31 +32,92 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-  //상속 받아서
+  //상속 받아서 탭탭바
   late TabController controller;
+  List<Animals> animalList = [];
 
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 2, vsync: this);
-  }
+
+    animalList.add(
+      Animals(
+          animalName: "Bee",
+          kind: "insect",
+          imagePath: "images/bee.png",
+          flyExist: true),
+    );
+    animalList.add(
+      Animals(
+          animalName: "Cat",
+          kind: "mammal",
+          imagePath: "images/cat.png",
+          flyExist: false),
+    );
+    animalList.add(
+      Animals(
+          animalName: "Cow",
+          kind: "mammal",
+          imagePath: "images/cow.png",
+          flyExist: false),
+    );
+    animalList.add(
+      Animals(
+          animalName: "Dog",
+          kind: "mammal",
+          imagePath: "images/dog.png",
+          flyExist: false),
+    );
+    animalList.add(
+      Animals(
+          animalName: "Fox",
+          kind: "mammal",
+          imagePath: "images/fox.png",
+          flyExist: false),
+    );
+    animalList.add(
+      Animals(
+          animalName: "Monkey",
+          kind: "primate",
+          imagePath: "images/monkey.png",
+          flyExist: false),
+    );
+    animalList.add(
+      Animals(
+          animalName: "pig",
+          kind: "mammal",
+          imagePath: "images/pig.png",
+          flyExist: false),
+    );
+    animalList.add(
+      Animals(
+          animalName: "wolf",
+          kind: "mammal",
+          imagePath: "images/wolf.png",
+          flyExist: false),
+    );
+  } //data =>initstate
 
   @override
   void dispose() {
     controller.dispose();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Tab Bar Test")),
+      appBar: AppBar(title: const Text("List View Animals Test")),
       body: TabBarView(
         controller: controller,
-        children: const [
-          FirstPage(),
-          SecPage(),
+        children: [
+          FirstPage(
+            list: animalList,
+          ),
+          SecPage(
+            list: animalList,
+          ),
         ],
       ),
       bottomNavigationBar: TabBar(
@@ -64,11 +126,9 @@ class _MyHomePageState extends State<MyHomePage>
         tabs: const [
           Tab(
             icon: Icon(Icons.looks_one, color: Colors.purple),
-            text: "First",
           ),
           Tab(
             icon: Icon(Icons.looks_two, color: Colors.blue),
-            text: "Sec",
           ),
         ],
       ),
